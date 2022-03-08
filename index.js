@@ -46,7 +46,8 @@ function toonDetailVan(filiaal) {
     document.getElementById("gemeente").innerText = filiaal.gemeente;
     document.getElementById("omzet").innerText = filiaal.omzet;
     document.getElementById("vakMetOmzet").hidden = false;
-}
+    var urlWijzigenButton = "http://localhost:8080/filialen/" + filiaal.id;
+
 /* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
 document.getElementById("omzetWijzigen").onclick = wijzigen;
 async function wijzigen() {
@@ -54,7 +55,7 @@ async function wijzigen() {
         omzet: document.getElementById("gewijzigdeOmzet").value,
     };
     try{
-        const response = await fetch(filialenUrl,
+        const response = await fetch(urlWijzigenButton,
             {method: "POST", headers: {"content-type": "application/json"},
                 body: JSON.stringify(filiaal)});
         if(response.ok) {
@@ -65,6 +66,7 @@ async function wijzigen() {
     } catch {
         technischeFout();
     }
+}
 }
 
 /*om filiaal te kunnen toevoegen*/
