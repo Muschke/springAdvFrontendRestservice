@@ -45,19 +45,18 @@ function toonDetailVan(filiaal) {
     document.getElementById("naam").innerText = filiaal.naam;
     document.getElementById("gemeente").innerText = filiaal.gemeente;
     document.getElementById("omzet").innerText = filiaal.omzet;
+    document.getElementById("vakMetOmzet").hidden = false;
 }
 /* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
 document.getElementById("omzetWijzigen").onclick = wijzigen;
 async function wijzigen() {
-    const Filaal = {
-        naam:,
-        gemeente:,
+    const filiaal = {
         omzet: document.getElementById("gewijzigdeOmzet").value,
     };
     try{
         const response = await fetch(filialenUrl,
             {method: "POST", headers: {"content-type": "application/json"},
-                body: JSON.stringify(omzetFiliaal)});
+                body: JSON.stringify(filiaal)});
         if(response.ok) {
             document.getElementById("technischeFout").hidden = true;
         } else {
