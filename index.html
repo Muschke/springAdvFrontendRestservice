@@ -7,9 +7,37 @@
     <title>Filialen</title>
 </head>
 <body>
+<!--genereren lijst met aanwezige filialen-->
 <h1>Filialen</h1>
 <ul id="filialen">
 </ul>
+<!--om aangeklikt filiaal te tonen-->
+<h1>Detail</h1>
+<dl>
+    <dt>Nummer</dt>
+    <dd id="id"></dd>
+    <dt>Naam</dt>
+    <dd id="naam"></dd>
+    <dt>Gemeente</dt>
+    <dd id="gemeente"></dd>
+    <dt>Omzet</dt>
+    <dd id="omzet"></dd>
+</dl>
+<!--eigen oefening:-->
+<input id="gewijzigdeOmzet" placeholder="nieuwe Omzet">
+<span id="gewijzigdeOmzetFout" hidden class="fout">Verplicht.</span>
+<button id="omzetWijzigen">Wijzig omzet</button>
+
+<!--om filiaal toe te voegen-->
+
+<h1>Nieuw filiaal:</h1>
+<input id="nieuweNaam" required autofocus placeholder="Naam">
+<span id="nieuweNaamFout" hidden class="fout">Verplicht.</span>
+<input id="nieuweGemeente" required placeholder="Gemeente">
+<span id="nieuweGemeenteFout" hidden class="fout">Verplicht.</span>
+<input id="nieuweOmzet" required type="number" min="1" placeholder="Omzet">
+<span id="nieuweOmzetFout" hidden class="fout">Verplicht.</span>
+<button id="toevoegen">Toevoegen</button>
 
 <div id="technischeFout" hidden class="fout">
     Technische fout, contacteer helpdesk</div>
