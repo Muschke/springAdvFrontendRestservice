@@ -45,19 +45,27 @@ function toonDetailVan(filiaal) {
     document.getElementById("naam").innerText = filiaal.naam;
     document.getElementById("gemeente").innerText = filiaal.gemeente;
     document.getElementById("omzet").innerText = filiaal.omzet;
-    document.getElementById("vakMetOmzet").hidden = false;
-    var urlWijzigenButton = "http://localhost:8080/filialen/" + filiaal.id;
 
-/* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
-document.getElementById("omzetWijzigen").onclick = wijzigen;
-async function wijzigen() {
-    const filiaal = {
-        omzet: document.getElementById("gewijzigdeOmzet").value,
-    };
-    try{
+
+    /* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
+    document.getElementById("vakMetOmzet").hidden = false;
+    document.getElementById("omzetWijzigen").onclick = wijzigen;
+}
+    async function wijzigen(filiaal) {
+        const filiaalUpdate = {
+            id: filiaal.id,
+            naam: filiaal.naam,
+            gemeente: filiaal.gemeente,
+            omzet: document.getElementById("gewijzigdeOmzet").value,
+        };
+
+        var urlWijzigenButton = "http://localhost:8080/filialen" + filiaal.id;
+        //want ja ik moet request doen naar http://localhost:8080/filialen/{{id}}
+
+        try{
         const response = await fetch(urlWijzigenButton,
-            {method: "POST", headers: {"content-type": "application/json"},
-                body: JSON.stringify(filiaal)});
+            {method: "PUT", headers: {"content-type": "application/json"},
+                body: JSON.stringify(filiaalUpdate)});
         if(response.ok) {
             document.getElementById("technischeFout").hidden = true;
         } else {
@@ -66,7 +74,7 @@ async function wijzigen() {
     } catch {
         technischeFout();
     }
-}
+
 }
 
 /*om filiaal te kunnen toevoegen*/
@@ -103,7 +111,6 @@ async function toevoegen() {
         }
     }
 }
-
 
 /*weergeven/verbergen technische fout*/
 function technischeFout() {
