@@ -13,8 +13,8 @@ async function leesFilialen() {
 
 function maakHyperlinksMet(filialen) {
     const ul = document.getElementById("filialen");
-    for(filiaal of filialen) {
-        ul.appendChild(maakLiMet(filiaal));
+    for(var filiaal of filialen) {
+        ul.appendChild(maakLiMet(filiaal.naam));
     }
 }
 
