@@ -48,7 +48,11 @@ function toonDetailVan(filiaal) {
     document.getElementById("omzet").innerText = filiaal.omzet;
     /* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
     document.getElementById("vakMetOmzet").hidden = false;
-    document.getElementById("omzetWijzigen").onclick = wijzigen(filiaal);
+    var omzetWijzigenButton = document.getElementById("omzetWijzigen");
+    omzetWijzigenButton.onclick = function () {
+        wijzigen(filiaal);
+    }
+    //document.getElementById("omzetWijzigen").onclick = wijzigen(filiaal);
     //document.getElementById("omzetWijzigen").dataset.url = "http://localhost:8080/filialen/" + filiaal.id;
 }
 
@@ -71,6 +75,8 @@ async function wijzigen(filiaal) {
                 body: JSON.stringify(filiaalUpdate)});
         if(response.ok) {
             document.getElementById("technischeFout").hidden = true;
+            document.getElementById("omzet").innerText = document.getElementById("gewijzigdeOmzet").value;
+            document.getElementById("gewijzigdeOmzet").value = "";
         } else {
             technischeFout();
         }
