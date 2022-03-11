@@ -40,28 +40,31 @@ async function leesFiliaalMetUrl(url) {
         technischeFout();
     }
 }
+
 function toonDetailVan(filiaal) {
     document.getElementById("id").innerText = filiaal.id;
     document.getElementById("naam").innerText = filiaal.naam;
     document.getElementById("gemeente").innerText = filiaal.gemeente;
     document.getElementById("omzet").innerText = filiaal.omzet;
-
-
     /* OEF: veld in detail aangeklikte filiaal om omzet up te daten:*/
     document.getElementById("vakMetOmzet").hidden = false;
-    document.getElementById("omzetWijzigen").onclick = wijzigen;
+    document.getElementById("omzetWijzigen").onclick = wijzigen(filiaal);
+    //document.getElementById("omzetWijzigen").dataset.url = "http://localhost:8080/filialen/" + filiaal.id;
 }
-    async function wijzigen(filiaal) {
-        const filiaalUpdate = {
-            id: filiaal.id,
-            naam: filiaal.naam,
-            gemeente: filiaal.gemeente,
-            omzet: document.getElementById("gewijzigdeOmzet").value,
-        };
 
-        var urlWijzigenButton = "http://localhost:8080/filialen" + filiaal.id;
-        //want ja ik moet request doen naar http://localhost:8080/filialen/{{id}}
+async function wijzigen(filiaal) {
+    //want ja ik moet request doen naar http://localhost:8080/filialen/{{id}}
+    //var test = document.getElementById("omzetWijzigen");
+    var urlWijzigenButton = "http://localhost:8080/filialen/" + filiaal.id;
+    //console.log(urlWijzigenButton);
 
+    //hoe en welke record moet worden gewijzigd
+    const filiaalUpdate = {
+        id: filiaal.id,
+        naam: filiaal.naam,
+        gemeente: filiaal.gemeente,
+        omzet: document.getElementById("gewijzigdeOmzet").value,
+    };
         try{
         const response = await fetch(urlWijzigenButton,
             {method: "PUT", headers: {"content-type": "application/json"},
