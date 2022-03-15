@@ -21,12 +21,13 @@ function maakHyperlinksMet(filialen) {
 function maakLiMet(naam, id) {
     const li = document.createElement("li");
     const hyperlink = document.createElement("a");
-    hyperlink.href= "#";
+    hyperlink.href= "http://localhost:63342/frontendRestservice/detail.html";
+    hyperlink.target = "_blank";
     hyperlink.innerText = naam;
-    hyperlink.dataset.url = "http://localhost:8080/filialen/" + id;
-    hyperlink.onclick = function () {
-        leesFiliaalMetUrl(this.dataset.url);
-    };
+   // hyperlink.dataset.url = "http://localhost:8080/filialen/" + id;
+  //  hyperlink.onclick = function () {
+    //    leesFiliaalMetUrl(this.dataset.url);
+   // };
     li.appendChild(hyperlink);
     return li;
 }

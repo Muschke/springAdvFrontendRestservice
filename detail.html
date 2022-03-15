@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <script src="detail.js" defer></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="frontend.css">
+    <title>Detail Filiaal</title>
+</head>
+<body>
+
+<!--om aangeklikt filiaal te tonen-->
+<h1>Detail</h1>
+<dl>
+    <dt>Nummer</dt>
+    <dd id="id"></dd>
+    <dt>Naam</dt>
+    <dd id="naam"></dd>
+    <dt>Gemeente</dt>
+    <dd id="gemeente"></dd>
+    <dt>Omzet</dt>
+    <dd id="omzet"></dd>
+</dl>
+<!--eigen oefening:-->
+<div id="vakMetOmzet" hidden>
+    <input id="gewijzigdeOmzet" placeholder="nieuwe Omzet">
+    <span id="gewijzigdeOmzetFout" hidden class="fout">Verplicht.</span>
+    <button id="omzetWijzigen">Wijzig omzet</button>
+</div>
+
+</body>
+</html>
